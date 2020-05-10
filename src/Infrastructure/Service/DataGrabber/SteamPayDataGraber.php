@@ -2,6 +2,9 @@
 
 namespace App\Infrastructure\Service\DataGrabber;
 
+use App\Application\DTO\Collection\GameWriteDTOCollection;
+use App\Application\DTO\Collection\GenreDTOCollection;
+use App\Application\DTO\Collection\ImageDTOCollection;
 use App\Application\DTO\GameWriteDTO;
 use App\Application\DTO\GenreDTO;
 use App\Application\DTO\ImageDTO;
@@ -9,9 +12,6 @@ use App\Application\ValueObject\ImageType;
 use App\Application\ValueObject\Url;
 use DateTimeImmutable;
 use Exception;
-use GameWriteDTOCollection;
-use GenreDTOCollection;
-use ImageDTOCollection;
 use JsonException;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;

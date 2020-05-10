@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Application\DTO;
 
+use App\Application\DTO\Collection\GenreDTOCollection;
+use App\Application\DTO\Collection\ImageDTOCollection;
 use App\Application\ValueObject\Url;
 use DateTimeImmutable;
-use GenreDTOCollection;
-use ImageDTOCollection;
 
 class GameWriteDTO
 {

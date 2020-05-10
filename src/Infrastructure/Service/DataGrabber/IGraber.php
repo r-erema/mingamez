@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataGrabber;
 
-use GameWriteDTOCollection;
+use App\Application\DTO\Collection\GameWriteDTOCollection;
 
 interface IGraber
 {

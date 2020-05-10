@@ -9,7 +9,7 @@ services:
 
     App\:
         resource: '../src'
-        exclude: '../src/{Entity,Kernel.php}'
+        exclude: '../src/{**/Migration,Entity,Kernel.php}'
 
     App\Infrastructure\Doctrine\EventListener\FixPostgresDefaultSchemaListener:
         tags:

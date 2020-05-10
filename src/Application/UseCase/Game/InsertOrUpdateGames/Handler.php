@@ -15,7 +15,7 @@ use App\Domain\Entity\Distributor;
 use App\Domain\Entity\Game;
 use App\Domain\Entity\Genre;
 use App\Domain\Entity\Image;
-use GameWriteDTOCollection;
+use App\Application\DTO\Collection\GameWriteDTOCollection;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 

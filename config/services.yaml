@@ -16,14 +16,14 @@ services:
             - { name: doctrine.event_listener, event: postGenerateSchema }
 
     App\Application\Repository\IUserRepository:
-        class: App\Infrastructure\Service\UserRepository
+        class: App\Infrastructure\Repository\UserRepository
     App\Application\Repository\IGameRepository:
-        class: App\Infrastructure\Service\GameRepository
+        class: App\Infrastructure\Repository\GameRepository
     App\Application\Repository\IGenreRepository:
-        class: App\Infrastructure\Service\GenreRepository
+        class: App\Infrastructure\Repository\GenreRepository
     App\Application\Repository\IDistributorRepository:
-        class: App\Infrastructure\Service\DistributorRepository
-    App\Application\Repository\IFlusher:
+        class: App\Infrastructure\Repository\DistributorRepository
+    App\Application\Service\IFlusher:
         class: App\Infrastructure\Service\Flusher
     App\Infrastructure\Service\IConfirmTokenSender: '@App\Infrastructure\Service\ConfirmTokenSender'
     Predis\ClientInterface:

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Application\DTO\Collection;
+
 use App\Application\DTO\GenreDTO;
 use Doctrine\Common\Collections\ArrayCollection;
 use Webmozart\Assert\Assert;

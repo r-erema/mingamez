@@ -18,7 +18,7 @@ class Handler implements MessageHandlerInterface
 
     public function __invoke(Query $command): GameCollection
     {
-        return $this->games->findBy(['distributor' => 'a4a351ee-436d-4d08-be58-83178dbbfb1d'], ['rating' => 'desc'], 13);
+        return $this->games->findBy([], ['rating' => 'desc'], 13);
     }
 
 }

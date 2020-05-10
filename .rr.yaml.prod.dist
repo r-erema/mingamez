@@ -1,4 +1,9 @@
 http:
   address: 0.0.0.0:8080
+  http2:
+    enabled: true
   workers:
     command:  "php psr-worker.php"
+static:
+  enable: true
+  dir: "static"

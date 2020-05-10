@@ -1,0 +1,27 @@
+doctrine:
+  dbal:
+    driver: 'pdo_pgsql'
+    server_version: '12.2'
+    charset: utf8
+    default_table_options:
+      charset: utf8mb4
+      collate: utf8mb4_unicode_ci
+    url: '%env(resolve:DATABASE_URL)%'
+    types:
+      uuid_type: Ramsey\Uuid\Doctrine\UuidType
+      network_type: App\Infrastructure\Doctrine\Types\NetworkType
+      email_type: App\Infrastructure\Doctrine\Types\EmailType
+      status_type: App\Infrastructure\Doctrine\Types\StatusType
+      role_type: App\Infrastructure\Doctrine\Types\RoleType
+      url_type: App\Infrastructure\Doctrine\Types\UrlType
+      image_type: App\Infrastructure\Doctrine\Types\ImageType
+  orm:
+    auto_generate_proxy_classes: true
+    naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+    auto_mapping: true
+    mappings:
+      App:
+        type: php
+        dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping'
+        prefix: 'App'
+        alias: App

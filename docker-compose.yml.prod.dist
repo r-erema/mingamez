@@ -1,0 +1,26 @@
+version: '3'
+services:
+  php-cli:
+    image: erema/php-cli:latest
+    volumes:
+    - ./:/var/www/html
+    working_dir: /var/www/html
+    tty: true
+    ports:
+      - 8080:8080
+  postgres:
+    image: postgres:12.2
+    environment:
+      POSTGRES_USER: mingamez
+      POSTGRES_DB: mingamez
+      POSTGRES_PASSWORD: %pass%
+    ports:
+    - 5432:5432
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
+  redis:
+      image: redis:6.0
+      command: redis-server --requirepass %pass%
+

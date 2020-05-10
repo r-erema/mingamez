@@ -1,0 +1,6 @@
+{% extends 'email/layout.main.twig' %}
+
+{% block body %}
+    {% set url = url(constant('App\\Infrastructure\\Http\\Controller\\AuthController::CONFIRM_ROUTE_NAME'), {'token': token}) %}
+    <p><a href="{{ url }}">{{ "Confirm" | trans([], 'common') }}</a></p>
+{% endblock %}

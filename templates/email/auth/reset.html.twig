@@ -1,0 +1,6 @@
+{% extends 'email/layout.main.twig' %}
+
+{% block body %}
+    {% set url = url(constant('App\\Infrastructure\\Http\\ControllerResetController::RESET_RESET_ROUTE'), {'token': token}) %}
+    <p><a href="{{ url }}">{{ "Reset password" | trans([], 'common') }}</a></p>
+{% endblock %}

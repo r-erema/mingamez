@@ -1,0 +1,41 @@
+parameters:
+    locale: 'ru'
+    fromEmail: '%env(FROM_EMAIL)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src'
+        exclude: '../src/{Entity,Kernel.php}'
+
+    App\Infrastructure\Doctrine\EventListener\FixPostgresDefaultSchemaListener:
+        tags:
+            - { name: doctrine.event_listener, event: postGenerateSchema }
+
+    App\Application\Repository\IUserRepository:
+        class: App\Infrastructure\Service\UserRepository
+    App\Application\Repository\IGameRepository:
+        class: App\Infrastructure\Service\GameRepository
+    App\Application\Repository\IGenreRepository:
+        class: App\Infrastructure\Service\GenreRepository
+    App\Application\Repository\IDistributorRepository:
+        class: App\Infrastructure\Service\DistributorRepository
+    App\Application\Repository\IFlusher:
+        class: App\Infrastructure\Service\Flusher
+    App\Infrastructure\Service\IConfirmTokenSender: '@App\Infrastructure\Service\ConfirmTokenSender'
+    Predis\ClientInterface:
+        class: Predis\Client
+        arguments: ['%env(REDIS_URL)%']
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments: ['@Predis\ClientInterface']
+    App\Infrastructure\Service\ConfirmTokenSender:
+        $from: '%fromEmail%'
+    App\Infrastructure\Service\ResetTokenSender:
+        $from: '%fromEmail%'
+    App\Infrastructure\Service\ResetTokenizer:
+        factory: App\Infrastructure\DI\Factory\ResetTokenizerFactory::create
+        arguments:
+            $interval: 'PT1H'

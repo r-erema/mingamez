@@ -1,0 +1,6 @@
+.idea
+/var/
+/vendor/
+docker-compose.yml
+.rr.yaml
+

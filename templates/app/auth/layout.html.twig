@@ -1,0 +1,34 @@
+{% extends 'app/admin/root.layout.html.twig' %}
+
+{% block body %}
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <body class="bg-gradient-primary">
+
+    {% block error %}{% endblock %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block {% block bg_class %}{% endblock %}"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">{% block title %}{% endblock %}</h1>
+                                    </div>
+                                    {% block form %}{% endblock %}
+                                    <hr>
+                                    {% block bottom_links %}{% endblock %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

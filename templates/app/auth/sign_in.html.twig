@@ -1,0 +1,60 @@
+{% extends 'app/auth/layout.html.twig' %}
+
+{% block error %}
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block title %}{{ "Sign in" | trans([], 'common') }}{% endblock %}
+{% block bg_class %}bg-login-image{% endblock %}
+{% block bottom_links %}
+    <div class="text-center">
+        <a class="small" href='{{ path(constant('App\\Infrastructure\\Http\\Controller\\AuthController::RESET_REQUEST_ROUTE_NAME')) }}'>
+            {{ "Reset password" | trans([], 'common') }}
+        </a>
+    </div>
+    <div class="text-center">
+        <a class="small" href='{{ path(constant('App\\Infrastructure\\Http\\Controller\\AuthController::SIGN_UP_ROUTE_NAME')) }}'>
+            {{ "Sign up" | trans([], 'common') }}
+        </a>
+    </div>
+{% endblock %}
+
+
+{% block form %}
+    <form class="user" method="post">
+        <div class="form-group">
+            <input
+                    type="email"
+                    name="email"
+                    class="form-control form-control-user"
+                    id="exampleInputEmail"
+                    aria-describedby="emailHelp"
+                    placeholder="{{ "E-mail" | trans([], 'common') }}"
+            />
+        </div>
+        <div class="form-group">
+            <input type="password"
+                   name="password"
+                   class="form-control form-control-user"
+                   id="exampleInputPassword"
+                   placeholder="{{ "Password" | trans([], 'common') }}"
+            />
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+        <div class="form-group">
+            <div class="custom-control custom-checkbox small">
+                <input type="checkbox" class="custom-control-input" id="customCheck">
+                <label class="custom-control-label" for="customCheck">{{ "Remember Me" | trans([], 'common') }}</label>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-user btn-block" value="{{ "Sign in" | trans([], 'common') }}" />
+        <hr>
+        <a href="{{ path(constant('App\\Infrastructure\\Http\\Controller\\AuthController::FB_CONNECT_ROUTE_NAME')) }}" class="btn btn-facebook btn-user btn-block">
+            <i class="fab fa-facebook-f fa-fw"></i> {{ "Sign in via Facebook" | trans([], 'common') }}
+        </a>
+    </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'app/auth/layout.html.twig' %}
+
+{% block content %}
+    <div class="card mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{{ user.email.value }}</h6>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">{{ "Role" | trans([], 'common') }}:</dt>
+                <dd class="col-sm-9">{{ user_role(user.role.value) }}</dd>
+                <dt class="col-sm-3">{{ "Creation date" | trans([], 'common') }}:</dt>
+                <dd class="col-sm-9">{{ user.date|date("Y-m-d H:i:s") }}</dd>
+            </dl>
+        </div>
+    </div>
+{% endblock %}

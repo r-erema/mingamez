@@ -1,0 +1,43 @@
+{% extends 'app/auth/layout.html.twig' %}
+
+{% block title %}{{ "Sign up" | trans([], 'common') }}{% endblock %}
+{% block bg_class %}bg-register-image{% endblock %}
+{% block bottom_links %}
+    <div class="text-center">
+        <a class="small" href='{{ path(constant('App\\Infrastructure\\Http\\Controller\\AuthController::LOGOUT_ROUTE_NAME')) }}'>
+            {{ "Reset password" | trans([], 'common') }}
+        </a>
+    </div>
+    <div class="text-center">
+        <a class="small" href='{{ path(constant('App\\Infrastructure\\Http\\Controller\\AuthController::SIGN_IN_ROUTE_NAME')) }}'>
+            {{ "Sign in" | trans([], 'common') }}
+        </a>
+    </div>
+{% endblock %}
+
+{% block form %}
+    <div>
+        {{ form_start(form, {attr: {'class': 'user'} }) }}
+        <div class="form-group">
+            {{ form_widget(form.email, {'attr': {
+                'placeholder': 'E-mail' | trans([], 'common'),
+                'class' : 'form-control form-control-user',
+            }}) }}
+            <div class="invalid-feedback" >{{ form_errors(form.email) }}</div>
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.password, {'attr': {
+                'placeholder': 'Password' | trans([], 'common'),
+                'class' : 'form-control form-control-user',
+            }}) }}
+            <div class="invalid-feedback" >{{ form_errors(form.password) }}</div>
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+        <input type="submit" class="btn btn-primary btn-user btn-block" value="{{ "Sign up" | trans([], 'common') }}" />
+        <hr>
+        <a href="{{ path(constant('App\\Infrastructure\\Http\\Controller\\AuthController::FB_CONNECT_ROUTE_NAME')) }}" class="btn btn-facebook btn-user btn-block">
+            <i class="fab fa-facebook-f fa-fw"></i> {{ "Sign in via Facebook" | trans([], 'common') }}
+        </a>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

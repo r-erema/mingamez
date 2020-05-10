@@ -1,0 +1,5 @@
+{% if role == constant('other\\ProjectManager\\src\\Model\\User\\Entity\\Role::ROLE_USER') %}
+    <span class="badge badge-secondary">User</span>
+{% elseif role == constant('other\\ProjectManager\\src\\Model\\User\\Entity\\Role::ROLE_ADMIN') %}
+    <span class="badge badge-success">Admin</span>
+{% endif %}

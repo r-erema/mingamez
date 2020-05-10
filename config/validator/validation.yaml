@@ -1,0 +1,10 @@
+other\ProjectManager\src\Model\User\UseCase\SignUp\Request\Command:
+  properties:
+    email:
+      - NotBlank: ~
+      - Email:  ~
+    password:
+      - NotBlank: ~
+      - Length:
+          min: 6
+          max: 50

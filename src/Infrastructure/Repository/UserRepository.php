@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service;
+namespace App\Infrastructure\Repository;
 
 use App\Application\Exception\EntityNotFoundException;
 use App\Application\Repository\IUserRepository;

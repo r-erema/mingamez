@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service;
+namespace App\Infrastructure\Repository;
 
 use App\Application\Repository\IDistributorRepository;
 use App\Domain\Entity\Distributor;

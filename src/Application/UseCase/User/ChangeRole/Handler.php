@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\User\ChangeRole;
 
-use App\Application\Repository\IFlusher;
+use App\Application\Service\IFlusher;
 use App\Application\Repository\IUserRepository;
 use App\Application\ValueObject\Role;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;

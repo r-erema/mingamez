@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\User\SignUp\Network;
 
-use App\Application\Repository\IFlusher;
 use App\Application\Repository\IUserRepository;
+use App\Application\Service\IFlusher;
 use App\Domain\Entity\User;
 use App\Domain\Exception\UserAlreadyExists;
 use DateTimeImmutable;

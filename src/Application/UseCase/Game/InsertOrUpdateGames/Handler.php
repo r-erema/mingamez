@@ -7,7 +7,7 @@ namespace App\Application\UseCase\Game\InsertOrUpdateGames;
 use App\Application\DTO\GameWriteDTO;
 use App\Application\DTO\GenreDTO;
 use App\Application\Repository\IDistributorRepository;
-use App\Application\Repository\IFlusher;
+use App\Application\Service\IFlusher;
 use App\Application\Repository\IGameRepository;
 use App\Application\Repository\IGenreRepository;
 use App\Domain\Collection\ImageCollection;

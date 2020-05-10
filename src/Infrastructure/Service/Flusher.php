@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service;
 
-use App\Application\Repository\IFlusher;
+use App\Application\Service\IFlusher;
 use Doctrine\ORM\EntityManagerInterface;
 
 class Flusher implements IFlusher

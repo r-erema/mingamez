@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\User\SignUp\Request;
 
-use App\Application\Repository\IFlusher;
+use App\Application\Service\IFlusher;
 use App\Application\Repository\IUserRepository;
 use App\Application\ValueObject\Email;
 use App\Domain\Entity\User;

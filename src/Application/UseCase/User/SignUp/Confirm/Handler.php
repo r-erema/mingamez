@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\User\SignUp\Confirm;
 
-use App\Application\Repository\IFlusher;
+use App\Application\Service\IFlusher;
 use App\Application\Repository\IUserRepository;
 use DomainException;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;

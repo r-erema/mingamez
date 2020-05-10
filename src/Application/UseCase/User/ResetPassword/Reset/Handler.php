@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\User\ResetPassword\Reset;
 
-use App\Application\Repository\IFlusher;
+use App\Application\Service\IFlusher;
 use App\Application\Repository\IUserRepository;
 use App\Domain\Exception\BadResetToken;
 use App\Infrastructure\Service\PasswordHasher;

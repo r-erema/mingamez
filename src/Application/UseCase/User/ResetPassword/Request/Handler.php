@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\UseCase\User\ResetPassword\Request;
 
 use App\Application\Exception\EntityNotFoundException;
-use App\Application\Repository\IFlusher;
+use App\Application\Service\IFlusher;
 use App\Application\Repository\IUserRepository;
 use App\Application\ValueObject\Email;
 use App\Infrastructure\Service\IResetTokenSender;

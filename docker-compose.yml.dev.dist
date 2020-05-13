@@ -21,6 +21,8 @@ services:
       POSTGRES_PASSWORD: 123
     ports:
     - 5432:5432
+    volumes:
+    - mingamez-pgsql-data:/var/lib/postgresql/data
   mailhog:
     image: mailhog/mailhog:latest
     ports:
@@ -29,4 +31,6 @@ services:
       image: redis:6.0
       command: redis-server --requirepass 123
 
-
+volumes:
+  mingamez-pgsql-data:
+    driver: local

@@ -21,15 +21,21 @@ class Image
         $this->type = $type;
         $this->game = $game;
     }
-
+    public function getId(): UuidInterface
+    {
+        return $this->id;
+    }
+    public function getUrl(): Url
+    {
+        return $this->url;
+    }
     public function getType(): ImageType
     {
         return $this->type;
     }
-
-    public function getUrl(): Url
+    public function getGame(): Game
     {
-        return $this->url;
+        return $this->game;
     }
 
 }

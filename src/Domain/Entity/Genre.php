@@ -18,15 +18,17 @@ class Genre {
         $this->name = $name;
         $this->games = new GameCollection();
     }
-
-    public function addGame(Game $game): self
+    public function getId(): UuidInterface
     {
-        $this->games->add($game);
-        return $this;
+        return $this->id;
     }
-
     public function getName(): string
     {
         return $this->name;
     }
+    public function getGames()
+    {
+        return $this->games;
+    }
+
 }

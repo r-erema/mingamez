@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\Service\DataGrabber;
 
-use App\Application\DTO\Collection\GameWriteDTOCollection;
+use App\Application\DTO\Collection\GameDTOCollection;
 use App\Application\DTO\Collection\GenreDTOCollection;
 use App\Application\DTO\Collection\ImageDTOCollection;
-use App\Application\DTO\GameWriteDTO;
+use App\Application\DTO\GameDTO;
 use App\Application\DTO\GenreDTO;
 use App\Application\DTO\ImageDTO;
 use App\Application\ValueObject\ImageType;
@@ -34,14 +34,14 @@ class AlawarDataGraber implements IGraber
     }
 
     /**
-     * @return GameWriteDTOCollection
+     * @return GameDTOCollection
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      * @throws Exception
      */
-    public function grabGames(): GameWriteDTOCollection
+    public function grabGames(): GameDTOCollection
     {
         $response = $this->httpClient->request('GET', self::XML_URL);
         $dom = new DOMDocument();
@@ -71,7 +71,7 @@ class AlawarDataGraber implements IGraber
                 $imagesDTOs[] = new ImageDTO(new Url($url), new ImageType($image['type']));
             }
 
-            $gameDTOs[] = new GameWriteDTO(
+            $gameDTOs[] = new GameDTO(
                 $game['native_game_id'],
                 $game['name'],
                 (int) $rating['rating_value'],
@@ -83,7 +83,7 @@ class AlawarDataGraber implements IGraber
             );
         }
 
-        return new GameWriteDTOCollection(...$gameDTOs);
+        return new GameDTOCollection(...$gameDTOs);
     }
 
     private static function retrieveGenres(DOMXPath $xPath): array {

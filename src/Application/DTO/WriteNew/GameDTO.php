@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Application\DTO;
+namespace App\Application\DTO\WriteNew;
 
 use App\Application\DTO\Collection\GenreDTOCollection;
 use App\Application\DTO\Collection\ImageDTOCollection;
 use App\Application\ValueObject\Url;
 use DateTimeImmutable;
 
-class GameWriteDTO
+class GameDTO
 {
     private string $sourceId;
     private string $name;

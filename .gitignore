@@ -2,5 +2,5 @@
 /var/
 /vendor/
 docker-compose.yml
+.env.local
 .rr.yaml
-

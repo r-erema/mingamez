@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Game\InsertOrUpdateGames;
 
-use App\Application\DTO\Collection\GameWriteDTOCollection;
+use App\Application\DTO\Collection\GameDTOCollection;
 use App\Application\DTO\DistributorDTO;
 
 class Command
 {
 
     private DistributorDTO $distributor;
-    private GameWriteDTOCollection $games;
+    private GameDTOCollection $games;
 
-    public function __construct(DistributorDTO $distributor, GameWriteDTOCollection $games)
+    public function __construct(DistributorDTO $distributor, GameDTOCollection $games)
     {
         $this->distributor = $distributor;
         $this->games = $games;
@@ -24,7 +24,7 @@ class Command
         return $this->distributor;
     }
 
-    public function getGames(): GameWriteDTOCollection
+    public function getGames(): GameDTOCollection
     {
         return $this->games;
     }

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Entity;
+namespace App\Application\DTO;
 
+use App\Application\DTO\Collection\GenreDTOCollection;
+use App\Application\DTO\Collection\ImageDTOCollection;
 use App\Application\ValueObject\Url;
-use App\Domain\Collection\GenreCollection;
-use App\Domain\Collection\ImageCollection;
+use App\Domain\Entity\Distributor;
 use DateTimeImmutable;
-use Doctrine\Common\Collections\Collection;
 use Ramsey\Uuid\UuidInterface;
 
-class Game
+class GameDTO
 {
 
     private UuidInterface $id;
@@ -22,8 +22,8 @@ class Game
     private string $description;
     private Url $url;
     private Distributor $distributor;
-    private Collection $images;
-    private Collection $genres;
+    private ImageDTOCollection $images;
+    private GenreDTOCollection $genres;
 
     public function __construct(
         UuidInterface $id,
@@ -33,7 +33,9 @@ class Game
         DateTimeImmutable $releaseDate,
         string $description,
         Url $url,
-        Distributor $distributor
+        Distributor $distributor,
+        ImageDTOCollection $images,
+        GenreDTOCollection $genres
     ) {
         $this->id = $id;
         $this->sourceId = $sourceId;
@@ -43,9 +45,10 @@ class Game
         $this->description = $description;
         $this->url = $url;
         $this->distributor = $distributor;
-        $this->genres = new GenreCollection();
-        $this->images = new ImageCollection();
+        $this->images = $images;
+        $this->genres = $genres;
     }
+
     public function getId(): UuidInterface
     {
         return $this->id;
@@ -78,18 +81,12 @@ class Game
     {
         return $this->distributor;
     }
-    public function getImages(): ImageCollection
+    public function getImages(): ImageDTOCollection
     {
-        if (!$this->images instanceof ImageCollection) {
-            $this->images = new ImageCollection($this->images->toArray());
-        }
         return $this->images;
     }
-    public function getGenres(): GenreCollection
+    public function getGenres(): GenreDTOCollection
     {
-        if (!$this->genres instanceof GenreCollection) {
-            $this->genres = new GenreCollection($this->genres->toArray());
-        }
         return $this->genres;
     }
 

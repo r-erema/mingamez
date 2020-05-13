@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\Service\DataGrabber;
 
-use App\Application\DTO\Collection\GameWriteDTOCollection;
+use App\Application\DTO\Collection\GameDTOCollection;
 use App\Application\DTO\Collection\GenreDTOCollection;
 use App\Application\DTO\Collection\ImageDTOCollection;
-use App\Application\DTO\GameWriteDTO;
+use App\Application\DTO\GameDTO;
 use App\Application\DTO\GenreDTO;
 use App\Application\DTO\ImageDTO;
 use App\Application\ValueObject\ImageType;
@@ -34,7 +34,7 @@ class SteamPayDataGraber implements IGraber
     }
 
     /**
-     * @return GameWriteDTOCollection
+     * @return GameDTOCollection
      * @throws JsonException
      * @throws TransportExceptionInterface
      * @throws ClientExceptionInterface
@@ -42,7 +42,7 @@ class SteamPayDataGraber implements IGraber
      * @throws ServerExceptionInterface
      * @throws Exception
      */
-    public function grabGames(): GameWriteDTOCollection
+    public function grabGames(): GameDTOCollection
     {
         $response = $this->httpClient->request('GET', self::PRODUCTS_API_URL);
         $games = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
@@ -65,7 +65,7 @@ class SteamPayDataGraber implements IGraber
             return 0;
         };
 
-        $result = new GameWriteDTOCollection();
+        $result = new GameDTOCollection();
         foreach ($games['products'] as $game) {
             usleep(500);
             $response = $this->httpClient->request('GET', sprintf(self::PRODUCT_API_URL_TPL, $game['id']));
@@ -84,7 +84,7 @@ class SteamPayDataGraber implements IGraber
                 $images->add(new ImageDTO(new Url($screenshot['url']), new ImageType(ImageType::TYPE_SCREENSHOT)));
             }
 
-            $gameDTO = new GameWriteDTO(
+            $gameDTO = new GameDTO(
                 (string) $game['id'],
                 $game['title'],
                 $getRating($game['id']),

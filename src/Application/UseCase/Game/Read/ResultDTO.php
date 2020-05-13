@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\UseCase\Game\Read;
 
 use App\Domain\Collection\GameCollection;
-class Result
+class ResultDTO
 {
 
     private GameCollection $topGames;

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Game\InsertOrUpdateGames;
 
-use App\Application\DTO\GameWriteDTO;
+use App\Application\DTO\Collection\GameDTOCollection;
+use App\Application\DTO\GameDTO;
 use App\Application\DTO\GenreDTO;
 use App\Application\Repository\IDistributorRepository;
-use App\Application\Service\IFlusher;
 use App\Application\Repository\IGameRepository;
 use App\Application\Repository\IGenreRepository;
+use App\Application\Service\IFlusher;
 use App\Domain\Collection\ImageCollection;
 use App\Domain\Entity\Distributor;
 use App\Domain\Entity\Game;
 use App\Domain\Entity\Genre;
 use App\Domain\Entity\Image;
-use App\Application\DTO\Collection\GameWriteDTOCollection;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
@@ -55,7 +55,7 @@ class Handler implements MessageHandlerInterface
         $this->flusher->flush();
     }
 
-    private function getUpdatedGame(GameWriteDTO $gameDTO, Distributor $distributor): Game {
+    private function getUpdatedGame(GameDTO $gameDTO, Distributor $distributor): Game {
         $game = $this->games->findOneBy([
             'sourceId' => $gameDTO->getSourceId(),
             'distributor' => $distributor
@@ -96,7 +96,7 @@ class Handler implements MessageHandlerInterface
         return $game;
     }
 
-    public function syncGenres(GameWriteDTOCollection $games): void
+    public function syncGenres(GameDTOCollection $games): void
     {
         $existedGenreNames = array_map(fn(Genre $genre): string => $genre->getName(), $this->genres->findAll()->toArray());
         $genreNamesToPersist = [];

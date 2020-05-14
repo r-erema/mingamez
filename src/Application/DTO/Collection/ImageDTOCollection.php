@@ -30,4 +30,12 @@ class ImageDTOCollection extends ArrayCollection
         return $this->filter(fn(ImageDTO $image): bool => $image->getType()->getValue() === ImageType::TYPE_PREVIEW);
     }
 
+    public function filterPreviewsByWidth(int $width):  ImageDTOCollection
+    {
+        return $this->filter(fn(ImageDTO $image): bool =>
+            $image->getType()->getValue() === ImageType::TYPE_PREVIEW
+            && getimagesize($image->getUrl()->getValue())[0] >= $width
+        );
+    }
+
 }

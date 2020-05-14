@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\UseCase\Game\Read;
+namespace App\Application\UseCase\Game\GetByDistributorAndGenre;
 
 use App\Application\DTO\Collection\GameDTOCollection;
 use App\Application\Repository\IGameRepository;
@@ -27,7 +27,7 @@ class Handler implements MessageHandlerInterface
      */
     public function __invoke(Query $query): GameDTOCollection
     {
-        $games = $this->games->findBy($query->getCriteria(), $query->getOrder(), $query->getLimit());
+        $games = $this->games->findByDistributorAndGenreId($query->getDistributorId(), $query->getGenreId(), $query->getLimit());
         return $this->mapper->map($games, GameDTOCollection::class);
     }
 

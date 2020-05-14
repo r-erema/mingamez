@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\DTO\WriteNew;
 
-use App\Application\DTO\Collection\GenreDTOCollection;
-use App\Application\DTO\Collection\ImageDTOCollection;
+use App\Application\DTO\WriteNew\Collection\GenreDTOCollection;
+use App\Application\DTO\WriteNew\Collection\ImageDTOCollection;
 use App\Application\ValueObject\Url;
 use DateTimeImmutable;
 

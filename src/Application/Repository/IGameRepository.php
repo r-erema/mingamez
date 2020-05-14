@@ -11,5 +11,6 @@ interface IGameRepository
 {
     public function findOneBy(array $criteria): ?Game;
     public function findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null): GameCollection;
+    public function findByDistributorAndGenreId(string $distributorId, string $genreId, int $limit): GameCollection;
     public function add(Game $user): void;
 }

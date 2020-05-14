@@ -1,6 +1,7 @@
 parameters:
     locale: 'ru'
     fromEmail: '%env(FROM_EMAIL)%'
+    defaultDistributor: '%env(DEFAULT_DISTRIBUTOR)%'
 
 services:
     _defaults:
@@ -14,6 +15,9 @@ services:
     App\Infrastructure\Doctrine\EventListener\FixPostgresDefaultSchemaListener:
         tags:
             - { name: doctrine.event_listener, event: postGenerateSchema }
+    App\Infrastructure\Http\Controller\IndexController:
+        arguments:
+            $defaultDistributor: '%defaultDistributor%'
 
     App\Application\Repository\IUserRepository:
         class: App\Infrastructure\Repository\UserRepository

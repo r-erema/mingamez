@@ -92,5 +92,40 @@ class Game
         }
         return $this->genres;
     }
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+    public function setRating(int $rating): self
+    {
+        $this->rating = $rating;
+        return $this;
+    }
+    public function setReleaseDate(DateTimeImmutable $releaseDate): self
+    {
+        $this->releaseDate = $releaseDate;
+        return $this;
+    }
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+        return $this;
+    }
+    public function setUrl(Url $url): self
+    {
+        $this->url = $url;
+        return $this;
+    }
+    public function setImages(ImageCollection $images): self
+    {
+        $this->images = $images;
+        return $this;
+    }
+    public function setGenres(GenreCollection $genres): self
+    {
+        $this->genres = $genres;
+        return $this;
+    }
 
 }

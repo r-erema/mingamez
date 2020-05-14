@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Game\InsertOrUpdateGames;
 
-use App\Application\DTO\Collection\GameDTOCollection;
-use App\Application\DTO\DistributorDTO;
+use App\Application\DTO\WriteNew\Collection\GameDTOCollection;
+use App\Application\DTO\WriteNew\DistributorDTO;
 
 class Command
 {

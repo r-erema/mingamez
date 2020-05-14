@@ -2,12 +2,12 @@
 
 namespace App\Infrastructure\Service\DataGrabber;
 
-use App\Application\DTO\Collection\GameDTOCollection;
-use App\Application\DTO\Collection\GenreDTOCollection;
-use App\Application\DTO\Collection\ImageDTOCollection;
-use App\Application\DTO\GameDTO;
-use App\Application\DTO\GenreDTO;
-use App\Application\DTO\ImageDTO;
+use App\Application\DTO\WriteNew\Collection\GameDTOCollection;
+use App\Application\DTO\WriteNew\Collection\GenreDTOCollection;
+use App\Application\DTO\WriteNew\Collection\ImageDTOCollection;
+use App\Application\DTO\WriteNew\GameDTO;
+use App\Application\DTO\WriteNew\GenreDTO;
+use App\Application\DTO\WriteNew\ImageDTO;
 use App\Application\ValueObject\ImageType;
 use App\Application\ValueObject\Url;
 use DateTimeImmutable;
@@ -25,6 +25,7 @@ class AlawarDataGraber implements IGraber
 {
 
     private const XML_URL = 'http://export.alawar.ru/games_agsn_xml.php?pid=40516&lang=ru';
+    private const GAME_URL_POSTFIX = '?pid=40516';
 
     private HttpClientInterface $httpClient;
 
@@ -83,7 +84,7 @@ class AlawarDataGraber implements IGraber
             );
         }
 
-        return new GameDTOCollection(...$gameDTOs);
+        return new GameDTOCollection($gameDTOs);
     }
 
     private static function retrieveGenres(DOMXPath $xPath): array {
@@ -167,7 +168,7 @@ class AlawarDataGraber implements IGraber
             if ($filesDOMList) {
                 foreach ($filesDOMList->childNodes as $fileDOMElement) {
                     if ($link = $fileDOMElement->textContent) {
-                        $game['url'] = new Url($fileDOMElement->textContent);
+                        $game['url'] = new Url(sprintf('%s%s', $fileDOMElement->textContent, self::GAME_URL_POSTFIX));
                     }
                 }
             }

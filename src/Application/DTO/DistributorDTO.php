@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\DTO;
 
-use Doctrine\Common\Collections\Collection;
 use Ramsey\Uuid\UuidInterface;
 
-class GenreDTO
+class DistributorDTO
 {
 
     private UuidInterface $id;
@@ -19,13 +18,13 @@ class GenreDTO
         $this->name = $name;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+    public function getName(): string
+    {
+        return $this->name;
     }
 
 }

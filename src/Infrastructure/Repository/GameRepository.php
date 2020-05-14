@@ -40,5 +40,19 @@ class GameRepository implements IGameRepository
         return new GameCollection($games);
     }
 
+    public function findByDistributorAndGenreId(string $distributorId, string $genreId, int $limit): GameCollection
+    {
+        $result = $this->em->createQueryBuilder()
+            ->select('g')
+            ->from(Game::class, 'g')
+            ->join('g.genres', 'genres')
+            ->where('genres.id = :genreId')
+            ->andWhere('g.distributor = :distributorId')
+            ->setMaxResults($limit)
+            ->setParameters(['genreId' => $genreId, 'distributorId' => $distributorId])
+            ->getQuery()
+            ->getResult();
+        return new GameCollection($result);
+    }
 
 }

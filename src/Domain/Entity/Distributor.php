@@ -22,5 +22,15 @@ class Distributor
         $this->games = new GameCollection();
     }
 
+    public function getId(): UuidInterface
+    {
+        return $this->id;
+    }
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+
 
 }

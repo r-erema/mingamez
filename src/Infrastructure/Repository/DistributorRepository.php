@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Repository;
 
 use App\Application\Repository\IDistributorRepository;
+use App\Domain\Collection\DistributorCollection;
 use App\Domain\Entity\Distributor;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
@@ -26,5 +27,11 @@ class DistributorRepository implements IDistributorRepository
         $distributor = $this->repository->findOneBy($criteria);
         return $distributor;
     }
+
+    public function findAll(): DistributorCollection
+    {
+        return new DistributorCollection($this->repository->findAll());
+    }
+
 
 }

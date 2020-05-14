@@ -2,12 +2,12 @@
 
 namespace App\Infrastructure\Service\DataGrabber;
 
-use App\Application\DTO\Collection\GameDTOCollection;
-use App\Application\DTO\Collection\GenreDTOCollection;
-use App\Application\DTO\Collection\ImageDTOCollection;
-use App\Application\DTO\GameDTO;
-use App\Application\DTO\GenreDTO;
-use App\Application\DTO\ImageDTO;
+use App\Application\DTO\WriteNew\Collection\GameDTOCollection;
+use App\Application\DTO\WriteNew\Collection\GenreDTOCollection;
+use App\Application\DTO\WriteNew\Collection\ImageDTOCollection;
+use App\Application\DTO\WriteNew\GameDTO;
+use App\Application\DTO\WriteNew\GenreDTO;
+use App\Application\DTO\WriteNew\ImageDTO;
 use App\Application\ValueObject\ImageType;
 use App\Application\ValueObject\Url;
 use DateTimeImmutable;
@@ -25,6 +25,7 @@ class SteamPayDataGraber implements IGraber
     private const PRODUCTS_API_URL = 'https://steampay.com/api/products';
     private const PRODUCT_API_URL_TPL = 'https://steampay.com/api/product/%d';
     private const TOP_PRODUCTS_API_TOP = 'https://steampay.com/api/top';
+    private const GAME_URL_POSTFIX = '?agent=mingamez';
 
     private HttpClientInterface $httpClient;
 
@@ -90,7 +91,7 @@ class SteamPayDataGraber implements IGraber
                 $getRating($game['id']),
                 new DateTimeImmutable(self::sanitizeDate($game['release_date'])),
                 '',
-                new Url($game['url']),
+                new Url(sprintf('%s%s', $game['url'], self::GAME_URL_POSTFIX)),
                 $genres,
                 $images
             );

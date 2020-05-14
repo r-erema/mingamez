@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Game\InsertOrUpdateGames;
 
-use App\Application\DTO\Collection\GameDTOCollection;
-use App\Application\DTO\GameDTO;
-use App\Application\DTO\GenreDTO;
+use App\Application\DTO\WriteNew\Collection\GameDTOCollection;
+use App\Application\DTO\WriteNew\GameDTO;
+use App\Application\DTO\WriteNew\GenreDTO;
 use App\Application\Repository\IDistributorRepository;
 use App\Application\Repository\IGameRepository;
 use App\Application\Repository\IGenreRepository;

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Cli;
 
-use App\Application\DTO\DistributorDTO;
+use App\Application\DTO\WriteNew\DistributorDTO;
 use App\Application\UseCase\Game\InsertOrUpdateGames\Command as InsertOrUpdateGames;
 use App\Infrastructure\Service\DataGrabber\AlawarDataGraber;
 use App\Infrastructure\Service\DataGrabber\IGraber;

@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\AutoMapper;
 
+use App\Application\DTO\Collection\DistributorDTOCollection;
 use App\Application\DTO\Collection\GameDTOCollection;
 use App\Application\DTO\Collection\GenreDTOCollection;
 use App\Application\DTO\Collection\ImageDTOCollection;
+use App\Application\DTO\DistributorDTO;
 use App\Application\DTO\GameDTO;
 use App\Application\DTO\GenreDTO;
 use App\Application\DTO\ImageDTO;
+use App\Domain\Collection\DistributorCollection;
 use App\Domain\Collection\GameCollection;
 use App\Domain\Collection\GenreCollection;
 use App\Domain\Collection\ImageCollection;
+use App\Domain\Entity\Distributor;
 use App\Domain\Entity\Game;
 use App\Domain\Entity\Genre;
 use App\Domain\Entity\Image;
@@ -42,7 +46,12 @@ class AutoMapperConfig implements AutoMapperConfiguratorInterface
                   $mapper->map($game->getImages(), ImageDTOCollection::class),
                   $mapper->map($game->getGenres(), GenreDTOCollection::class),
               ));
-
+        $config
+            ->registerMapping(Distributor::class, DistributorDTO::class)
+            ->beConstructedUsing(fn(Distributor $distributor) => new DistributorDTO(
+                $distributor->getId(),
+                $distributor->getName()
+            ));
         $config
             ->registerMapping(Image::class, ImageDTO::class)
             ->beConstructedUsing(fn(Image $image): ImageDTO => new ImageDTO(
@@ -61,6 +70,9 @@ class AutoMapperConfig implements AutoMapperConfiguratorInterface
         $config
             ->registerMapping(GameCollection::class, GameDTOCollection::class)
             ->forMember('elements', Operation::mapTo(GameDTO::class));
+        $config
+            ->registerMapping(DistributorCollection::class, DistributorDTOCollection::class)
+            ->forMember('elements', Operation::mapTo(DistributorDTO::class));
         $config
             ->registerMapping(ImageCollection::class, ImageDTOCollection::class)
             ->forMember('elements', Operation::mapTo(ImageDTO::class));

@@ -33,4 +33,12 @@ class DistributorDTOCollection extends ArrayCollection
             ->first();
     }
 
+    public function getIds(): array
+    {
+        return array_map(
+            fn (DistributorDTO $distributorDTO): string => $distributorDTO->getId()->toString(),
+            $this->toArray()
+        );
+    }
+
 }

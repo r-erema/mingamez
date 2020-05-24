@@ -24,4 +24,12 @@ class GameCollection extends ArrayCollection
         return $this;
     }
 
+    public function getIds(): array
+    {
+        return array_map(
+            fn(Game $game): string => $game->getId()->toString(),
+            $this->toArray()
+        );
+    }
+
 }

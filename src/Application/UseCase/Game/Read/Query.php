@@ -6,28 +6,31 @@ namespace App\Application\UseCase\Game\Read;
 
 class Query
 {
-    private array $criteria;
-    private array $order;
-    private int $limit;
 
-    public function __construct(array $criteria, array $order, int $limit)
+    private string $distributorId;
+    private int $page;
+    private int $count;
+
+    public function __construct(string $distributorId, int $page, int $count)
     {
-        $this->criteria = $criteria;
-        $this->order = $order;
-        $this->limit = $limit;
+        $this->distributorId = $distributorId;
+        $this->page = $page;
+        $this->count = $count;
     }
 
-    public function getCriteria(): array
+    public function getDistributorId(): string
     {
-        return $this->criteria;
+        return $this->distributorId;
     }
-    public function getOrder(): array
+
+    public function getPage(): int
     {
-        return $this->order;
+        return $this->page;
     }
-    public function getLimit(): int
+
+    public function getCount(): int
     {
-        return $this->limit;
+        return $this->count;
     }
 
 }

@@ -31,27 +31,37 @@
         </div>
 
         <div class="row">
-
             {% for i, game in otherGames %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="{{ game.url.value }}" target="_blank"><img class="card-img-top" src="{{ game.images.filterPreviewsByWidth(190).first.url.value }}" alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="{{ game.url.value }}" target="_blank" >{{ game.name }}</a>
-                        </h5>
-                        <p class="card-text">{{ game.description|length >= 100 ? game.description[:97] ~ '...' : '' }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-red">{{ game.rating | rating }}</small>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="{{ game.url.value }}" target="_blank"><img class="card-img-top" src="{{ game.images.filterPreviewsByWidth(190).first.url.value }}" alt=""></a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ game.url.value }}" target="_blank" >{{ game.name }}</a>
+                            </h5>
+                            <p class="card-text">{{ game.description|length >= 100 ? game.description[:97] ~ '...' : '' }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-red">{{ game.rating | rating }}</small>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
 
+            {% if pager is defined %}
+            <div class="col-12 d-flex justify-content-center">
+                {{ pagerfanta(pager, {
+                    distributorId: currentDistributor.id.toString,
+                    prev_message: '«',
+                    next_message: '»'
+                }) }}
+            </div>
+            {% endif %}
+
         </div>
-        <!-- /.row -->
+
+
 
     </div>
-    <!-- /.col-lg-9 -->
+
 {% endblock %}

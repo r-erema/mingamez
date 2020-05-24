@@ -2,11 +2,15 @@ parameters:
     locale: 'ru'
     fromEmail: '%env(FROM_EMAIL)%'
     defaultDistributor: '%env(DEFAULT_DISTRIBUTOR)%'
+    maxGamesPerPage: '%env(MAX_GAMES_PER_PAGE)%'
 
 services:
     _defaults:
         autowire: true
         autoconfigure: true
+
+    pagerfanta.route_generator_factory:
+        class: App\Infrastructure\Paginator\RouteGeneratorFactory
 
     App\:
         resource: '../src'
@@ -18,6 +22,7 @@ services:
     App\Infrastructure\Http\Controller\IndexController:
         arguments:
             $defaultDistributor: '%defaultDistributor%'
+            $maxGamesPerPage: '%maxGamesPerPage%'
 
     App\Application\Repository\IUserRepository:
         class: App\Infrastructure\Repository\UserRepository

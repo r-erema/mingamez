@@ -18,5 +18,12 @@ a, a:hover {
 .btn-red:hover {
   color: #d9d6d6;
 }
+.page-link {
+  color: #d9534f;
+}
+.page-item.active .page-link {
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
 
 

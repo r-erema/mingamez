@@ -7,8 +7,13 @@ namespace App\Infrastructure\Repository;
 use App\Application\Repository\IGameRepository;
 use App\Domain\Collection\GameCollection;
 use App\Domain\Entity\Game;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\QueryException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ObjectRepository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 class GameRepository implements IGameRepository
 {
@@ -38,6 +43,19 @@ class GameRepository implements IGameRepository
     {
         $games = $this->repository->findBy($criteria, $orderBy, $limit, $offset);
         return new GameCollection($games);
+    }
+
+    /**
+     * @param Criteria $criteria
+     * @return QueryBuilder
+     * @throws QueryException
+     */
+    public function createQueryBuilder(Criteria $criteria): QueryBuilder
+    {
+        return $this->em->createQueryBuilder()
+            ->select('g')
+            ->from(Game::class, 'g')
+            ->addCriteria($criteria);
     }
 
     public function findByDistributorAndGenreId(string $distributorId, string $genreId, int $limit): GameCollection
